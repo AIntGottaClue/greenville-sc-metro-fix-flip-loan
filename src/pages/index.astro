@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CityContent from '../components/CityContent.astro';
+import {brand,domain,cities} from '../data/cities';
+const title='Fix and Flip Loans in the Upstate, SC | Greenville SC Metro Fix & Flip Loan';
+const description='We connect Greenville, Greer, Mauldin and Anderson area investors with fix and flip funding sources. Funding within 48 hours. Tell us your goal.';
+const businessId=`https://${domain}/#business`;
+const faq=[{q:'Are you a direct lender?',a:'No. We are connectors. We introduce investors to funding sources, and the funding source determines eligibility and terms.'},{q:'Does submitting guarantee funding?',a:'No. A submission starts a review, not an approval or commitment.'}];
+const areas=cities.map(c=>({'@type':'City',name:c.name,containedInPlace:{'@type':'State',name:'South Carolina'}}));
+const jsonld=[{'@context':'https://schema.org','@type':'WebSite',name:brand,url:`https://${domain}/`},{'@context':'https://schema.org','@type':'FinancialService','@id':businessId,name:brand,url:`https://${domain}/`,areaServed:areas,description:'Fix and flip funding connections for real estate investors across Greenville, Greer, Mauldin, Anderson and the surrounding Upstate South Carolina area. Not a direct lender.'},{'@context':'https://schema.org','@type':'Service',serviceType:'Fix and flip funding connection service',provider:{'@id':businessId},areaServed:areas},{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))}];
+---
+<Base title={title} description={description} path="/" jsonld={jsonld}><Header/><main><CityContent cityName="Greenville SC Metro" location="Homepage" intro="The Upstate has mill village cottages in Greenville, brick ranches in Mauldin and Greer, and foothills homes near Travelers Rest, Pickens and Clemson. Tell us about the home, the work you plan and how you expect to sell. We are connectors, and we introduce your project to funding sources for funding within 48 hours." angle="A Judson mill cottage, a Mauldin ranch and a Simpsonville subdivision home call for different scopes and sell to different buyers. Start with the real condition of the house, the work you plan and recent sales on the same street." caution="Red clay, steep lots and old mill-village wiring all show up in the Upstate. Check them before you rely on a budget, and tell us what you have already confirmed." showCityGrid={true}/></main><Footer/></Base>
